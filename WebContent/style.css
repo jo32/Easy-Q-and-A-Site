@@ -1,0 +1,334 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: 'Trebuchet MS', 'Liberation Sans', 'DejaVu Sans',
+		sans-serif, 'Microsoft Yahei';
+	font-size: 14px;
+}
+
+body {
+	margin: 0;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.right_pane a {
+	color: black;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.newTopic a {
+	color: dimgray;
+}
+
+.newTopic a:link {
+	text-decoration: none;
+}
+
+.newTopic a:hover {
+	text-decoration: underline;
+}
+
+.statusBar {
+	display: none;
+	position: fixed;
+	padding: 5px;
+	background: #ff7a7a;
+	-moz-border-radius: 0 0 5px 5px;
+	-khtml-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px 5px;
+	-webkit-border-bottom-left-radius: 5px 5px;
+	border-bottom-right-radius: 0 0 5px 5px;
+	text-align: center;
+	border: 0px 1px 1px 1px solid red;
+}
+
+.topBar {
+	min-width: 962px;
+	width: 100%;
+	background: #000000;
+	color: #ffffff;
+	border-bottom: 9px solid yellow;
+}
+
+.options {
+	text-align: right;
+}
+
+.topBar ul {
+	margin: 3px;
+	padding-left: 0px;
+}
+
+.topBar li {
+	list-style-type: none;
+}
+
+.title {
+	padding: 10px;
+}
+
+.name {
+	font-size: 20px;
+}
+
+.description {
+	font-size: 12px;
+}
+
+.title li {
+	display: inline;
+}
+
+.container {
+	margin-top: 10px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #000000;
+	height: 100px;
+}
+
+.topicTitle,.newTopic,.replyTitle,.signupTitle,.signupHint,.newTopicTitle,.prev,.next
+	{
+	font-size: 18px;
+	padding: 5px;
+	border-bottom: 1px dotted gray;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.newTopic,.next,.prev {
+	text-align: center;
+	cursor: pointer;
+	color: gray;
+}
+
+.newTopic a,.next a,.prev a {
+	color: gray;
+}
+
+.contentWrapper {
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.hintPane li {
+	margin-bottom: 10px;
+}
+
+.footer {
+	width: 950px;
+	margin: 10px auto 5px auto;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	text-align: right;
+	padding: 5px;
+	border: 1px solid #000000;
+	font-size: 12px;
+	background: black;
+	color: white;
+}
+
+.spacer {
+	clear: both;
+	height: 1px;
+}
+
+#newTopic {
+	padding: 0 20px 0 20px;
+}
+
+#newTopic h3 {
+	margin-bottom: 8px;
+}
+
+.item {
+	cursor: pointer;
+	height: 51px;
+	border-bottom: 1px dotted gray;
+	margin-bottom: 5px;
+}
+
+.item:hover {
+	background: yellow;
+}
+
+.item .replyCount {
+	margin: 0 5px 0 0;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	float: left;
+	border-right: 1px solid gray;
+}
+
+.item .replyCount .count {
+	height: 30px;
+	line-height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.item .replyCount .text_replies {
+	lineheight: 20px;
+	font-size: 12px;
+}
+
+.item .item_title {
+	height: 30px;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+.item .item_time {
+	lineheight: 20px;
+	font-size: 12px;
+	text-align: right;
+	margin-right: 5px;
+}
+
+#viewMine {
+	cursor: pointer;
+	float: right;
+}
+
+.right li {
+	list-style-type: none;
+	display: inline;
+	margin-right: 10px;
+}
+
+.right ul {
+	padding: 0 0 10px 0;
+	border-bottom: 1px dotted gray;
+}
+
+.right textarea {
+	width: 98%;
+	height: 200px;
+}
+
+.right .right_content {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted gray;
+}
+
+.reply {
+	padding-left: 10px;
+	border-left: 1px solid dimgray;
+}
+
+#replyatopic {
+	margin-top: 10px;
+}
+
+/* ———– My Form ———– */
+.myform {
+	margin: 0 auto;
+	width: 400px;
+	padding: 14px;
+}
+
+/* ———– signupForm ———– */
+#signupForm {
+	
+}
+
+#signupForm h1 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+#signupForm p {
+	font-size: 11px;
+	color: #666666;
+	margin-bottom: 20px;
+	border-bottom: solid 1px #b7ddf2;
+	padding-bottom: 10px;
+}
+
+#signupForm label {
+	display: block;
+	font-weight: bold;
+	text-align: right;
+	width: 140px;
+	float: left;
+}
+
+#signupForm .small {
+	color: #666666;
+	display: block;
+	font-size: 11px;
+	font-weight: normal;
+	text-align: right;
+	width: 140px;
+}
+
+#signupForm input {
+	float: left;
+	font-size: 12px;
+	padding: 4px 2px;
+	border: solid 1px #aacfe4;
+	width: 200px;
+	margin: 2px 0 20px 10px;
+}
+
+#signupForm #submit {
+	clear: both;
+	cursor: pointer;
+	margin-left: 150px;
+	border: 1px solid grey;
+	width: 125px;
+	height: 31px;
+	text-align: center;
+	line-height: 31px;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/* ———– My newTopic Form ———– */
+#newTopic input {
+	width: 98%;
+	height: 30px;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#newTopic textarea {
+	
+}
+
+#newTopic #submit,.right #submit {
+	clear: both;
+	cursor: pointer;
+	margin-top: 10px;
+	border: 1px solid grey;
+	width: 125px;
+	height: 31px;
+	text-align: center;
+	line-height: 31px;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.right #submit {
+	margin-bottom: 20px;
+}
