@@ -1,7 +1,8 @@
 package info.jo32.EasyQandASite.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,8 +15,12 @@ public class PropertyLoader {
 		// InputStream in = new BufferedInputStream(new FileInputStream(path));
 		Properties props = new Properties();
 		URL url = Thread.currentThread().getContextClassLoader()
-				.getResource("web.properties");
-		InputStream in = new BufferedInputStream(url.openStream());
+				.getResource("");
+		String path = url.getPath();
+		File pPath = new File(path);
+		path = pPath.getParent();
+		path = path + "\\web.properties";
+		InputStream in = new FileInputStream(path);
 		props.load(in);
 		String value = props.getProperty(key, null);
 		return value;
@@ -23,9 +28,13 @@ public class PropertyLoader {
 
 	public static String getSQLstatement(String filename) throws IOException {
 		URL url = Thread.currentThread().getContextClassLoader()
-				.getResource(filename);
+				.getResource("");
+		String path = url.getPath();
+		File pPath = new File(path);
+		path = pPath.getParent();
+		path = path + "\\" + filename;
 		BufferedReader in = new BufferedReader(new InputStreamReader(
-				url.openStream()));
+				new FileInputStream(path)));
 		StringBuffer sqlStatement = new StringBuffer();
 		String line = in.readLine();
 		while (line != null) {
