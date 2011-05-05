@@ -1,6 +1,6 @@
 # Easy Q and A Site 
 
-architectur :
+architecture :
 
 <img src="https://github.com/downloads/jo32/Easy-Q-and-A-Site/arichitecture.png" />
 
