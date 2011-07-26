@@ -19,5 +19,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/google/proxool-0.9.1/lib/proxool-0.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/google/proxool-0.9.1/lib/proxool-cglib.jar"/>
+	<classpathentry kind="lib" path="C:/google/commons-logging-1.1.1/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

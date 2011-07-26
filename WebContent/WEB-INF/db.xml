@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxool>
+	<alias>mysql</alias>
+	<driver-url>jdbc:mysql://localhost/easyguestbook</driver-url>
+	<driver-class>com.mysql.jdbc.Driver</driver-class>
+	<statistics>1m,15m,1d</statistics>
+	<driver-properties>
+		<property name="user" value="root" />
+		<property name="password" value="test" />
+	</driver-properties>
+	<maximum-connection-count>100</maximum-connection-count>
+	<minimum-connection-count>25</minimum-connection-count>
+	<maximum-active-time>86400000</maximum-active-time>
+	<house-keeping-test-sql>select CURRENT_DATE</house-keeping-test-sql>
+</proxool>

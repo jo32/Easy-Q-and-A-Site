@@ -25,12 +25,7 @@
 <div class="topBar">
 <div class="container_12">
 <div class="grid_7">
-<div class="title">
-<ul>
-	<li class="name"><a href="">Exception.printTrace()</a></li>
-	<li class="description">: a very easy Q&A site</li>
-</ul>
-</div>
+<%@ include file="title.jsp"%>
 </div>
 <div class="options grid_5">
 <ul>
@@ -78,7 +73,7 @@
 </div>
 <div class="hintPane grid_6 alpha omega">
 <ul>
-	<li>This project is based on jQuery(1.4.4), xhEditor and Gson.</li>
+	<li>This project is based on jQuery(1.4.4), xhEditor, proxool and Gson.</li>
 	<li>Featuring ajax.</li>
 	<li>Run on Apache Tomcat v6.0.20 and MySQL 5.</li>
 	<li>Special thanks to <a href="http://twitter.com/cjwdxqq">@cjwdxqq</a>.</li>
@@ -89,16 +84,13 @@
 </div>
 <div class="hintPane grid_6 alpha omega">
 <ul>
-	<li>Fix the modification bug of n.User and n.Reply</li>
-	<li>Add delete and edit function.</li>
-	<li>Add starting function.</li>
+	<li>Fix some bugs.</li>
 	<li>Add search function.</li>
 </ul>
 </div>
 </div>
 <div class="clear"></div>
 </div>
-<div class="footer container_12">copyright 2010 <a href="http://jo32.info">jo32.info</a> | source
-code | contact : <a href="http://jo32.info">@jo32</a></div>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

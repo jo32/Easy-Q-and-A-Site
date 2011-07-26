@@ -1,5 +1,7 @@
-package info.jo32.EasyQandASite.persistence;
+package info.jo32.EasyQandASite.persistence.wrapper;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.List;
 
 import info.jo32.EasyQandASite.controller.Entity;
 import info.jo32.EasyQandASite.controller.Reply;
+import info.jo32.EasyQandASite.persistence.EntityFactory;
 
 public class ReplyWrapper extends EntityWrapper {
 
@@ -27,7 +30,8 @@ public class ReplyWrapper extends EntityWrapper {
 		long replyId;
 		String statement;
 		try {
-			ef = new EntityFactory();
+			Connection conn = DriverManager.getConnection("proxool.mysql");
+			ef = new EntityFactory(conn);
 			ResultSet rs = ef.executeQuery("SELECT MAX(replyId) FROM reply");
 			rs.next();
 			replyId = rs.getLong(1) + 1;
@@ -40,6 +44,7 @@ public class ReplyWrapper extends EntityWrapper {
 					+ ",'"
 					+ content
 					+ "'," + inreplyto + "," + rateCount + "," + score + ")";
+			conn.close();
 			return statement;
 		} catch (Exception e) {
 			return null;

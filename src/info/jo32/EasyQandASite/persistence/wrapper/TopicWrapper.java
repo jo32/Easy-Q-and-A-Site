@@ -1,5 +1,7 @@
-package info.jo32.EasyQandASite.persistence;
+package info.jo32.EasyQandASite.persistence.wrapper;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -7,8 +9,12 @@ import java.util.List;
 
 import info.jo32.EasyQandASite.controller.Entity;
 import info.jo32.EasyQandASite.controller.Topic;
+import info.jo32.EasyQandASite.persistence.EntityFactory;
 
 public class TopicWrapper extends EntityWrapper {
+
+	private static String INSERT_STATEMENT = "INSERT INTO topic(topicId,userId,title,content) VALUES (%d,%d,'%s','%s')";
+	private static String MODIFY_STATEMENT = "UPDATE topic SET userID = %d, title = '%s', content = '%s', replyCount = %d, diggCount = %d, topictime = '%s' WHERE topicId = %d";
 
 	public TopicWrapper(Entity e) {
 		super(e);
@@ -20,16 +26,17 @@ public class TopicWrapper extends EntityWrapper {
 		long userId = topic.getUserId();
 		String title = topic.getTitle();
 		String content = topic.getContent();
-		long replyCount = 0;
 		EntityFactory ef;
 		Long topicId;
 		String statement;
 		try {
-			ef = new EntityFactory();
+			Connection conn = DriverManager.getConnection("proxool.mysql");
+			ef = new EntityFactory(conn);
 			ResultSet rs = ef.executeQuery("SELECT MAX(topicId) FROM topic");
 			rs.next();
 			topicId = rs.getLong(1) + 1;
-			statement = "INSERT INTO topic(topicId,userId,title,content,replyCount) VALUES (" + topicId + "," + userId + ",'" + title + "','" + content + "'," + replyCount + ")";
+			statement = String.format(TopicWrapper.INSERT_STATEMENT, topicId, userId, title, content);
+			conn.close();
 			return statement;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,8 +64,7 @@ public class TopicWrapper extends EntityWrapper {
 	public String getModifyStatement() {
 		Topic topic = (Topic) this.getEntity();
 		Timestamp ts = new Timestamp(topic.getDate().getTime());
-		String statement = "UPDATE topic SET userId = " + topic.getUserId() + ", title='" + topic.getTitle() + "', content='" + topic.getContent() + "', replyCount = " + topic.getReplyCount()
-				+ ",  topictime='" + ts.toString() + "' where topicId = " + topic.getId();
+		String statement = String.format(MODIFY_STATEMENT, topic.getUserId(), topic.getTitle(), topic.getContent(), topic.getReplyCount(), topic.getDiggCount(), ts.toString(), topic.getId());
 		return statement;
 	}
 
@@ -73,7 +79,8 @@ public class TopicWrapper extends EntityWrapper {
 				topic.setTitle(rs.getString(3));
 				topic.setContent(rs.getString(4));
 				topic.setReplyCount(rs.getInt(5));
-				topic.setDate(rs.getTimestamp(6));
+				topic.setDiggCount(rs.getInt(6));
+				topic.setDate(rs.getTimestamp(7));
 				list.add(topic);
 			}
 		} catch (Exception e) {

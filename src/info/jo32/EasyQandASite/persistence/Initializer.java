@@ -1,10 +1,12 @@
 package info.jo32.EasyQandASite.persistence;
 
 import info.jo32.EasyQandASite.controller.User;
+import info.jo32.EasyQandASite.persistence.wrapper.UserWrapper;
 import info.jo32.EasyQandASite.util.PropertyLoader;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -41,7 +43,8 @@ public class Initializer extends HttpServlet {
 			throw new ServletException("No initializingKey parameter exists!");
 		}
 
-		String initializingKey = PropertyLoader.getProperty("initializingKey");
+		String initializingKey = this.getServletContext().getInitParameter(
+				"initializingKey");
 
 		if (!initializingKey.equals(keyFromParameter)) {
 			response.sendError(500, "initializingKey mismatched!");
@@ -53,7 +56,9 @@ public class Initializer extends HttpServlet {
 		EntityFactory entityFactory = null;
 
 		try {
-			entityFactory = new EntityFactory();
+			Connection conn = (Connection) request.getSession().getAttribute(
+					"conn");
+			entityFactory = new EntityFactory(conn);
 			pw.write("connection established!<br>");
 		} catch (ClassNotFoundException e) {
 			response.sendError(500, "ClassNotFoundException");
@@ -74,9 +79,12 @@ public class Initializer extends HttpServlet {
 		}
 
 		User admin = new User();
-		String adminName = PropertyLoader.getProperty("adminName");
-		String adminEmail = PropertyLoader.getProperty("adminEmail");
-		String adminPassword = PropertyLoader.getProperty("adminPassword");
+		String adminName = this.getServletContext().getInitParameter(
+				"adminName");
+		String adminEmail = this.getServletContext().getInitParameter(
+				"adminEmail");
+		String adminPassword = this.getServletContext().getInitParameter(
+				"adminPassword");
 		admin.setName(adminName);
 		admin.setEmail(adminEmail);
 		admin.setPassword(adminPassword);

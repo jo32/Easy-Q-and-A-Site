@@ -29,23 +29,30 @@
 <div class="topBar">
 <div class="container_12">
 <div class="grid_7">
-<div class="title">
-<ul>
-	<li class="name"><a href="">Exception.printTrace()</a></li>
-	<li class="description">: a very easy Q&A site</li>
-</ul>
-</div>
+<%@ include file="title.jsp"%>
 </div>
 <div class="options grid_5">
 <ul>
-	<li>welcome back, <%=userName%>,
-	<div id="viewMine"><a>view your topics</a></div>
-	</li>
+	<li>welcome back, <%=userName%></li>
 	<li><a href="signout">sign out</a></li>
 </ul>
 </div>
 <div class="clear"></div>
 </div>
+</div>
+<div class="container_12">
+<div class="sort grid_4">
+<div class="sortby grid_1 alpha">sort by :</div>
+<div id="byTime" class="time_sorting grid_1"><a>time</a></div>
+<div id="byReplies" class="reply_sorting grid_1"><a>replies</a></div>
+<div id="byDiggs" class="digg_sorting grid_1 omega"><a>diggs</a></div>
+</div>
+<div class="sort grid_3">
+<div class="sortby grid_1 alpha">post:</div>
+<div id="viewMine" class="time_sorting grid_1"><a>by me</a></div>
+<div id="viewAll" class="reply_sorting grid_1 omega"><a>all</a></div>
+</div>
+<div class="clear"></div>
 </div>
 <div class="container container_12">
 <div class="left_pane grid_6">
@@ -67,15 +74,23 @@
 </div>
 </div>
 <div class="right_pane grid_6">
-<div class="grid_6 alpha omega">
-<div class="replyTitle">Topic.getCotent().getReply()</div>
+<div class="grid_3 alpha">
+<div class="replyTitle">Topic.getCotent()</div>
+</div>
+<div class="grid_1">
+<div id="digg" class="diggThisPost"><a>digg</a></div>
+</div>
+<div class="grid_1">
+<div id="edit" class="diggThisPost"><a>edit</a></div>
+</div>
+<div class="grid_1 omega">
+<div id="delete" class="diggThisPost"><a>delete</a></div>
 </div>
 <div class="clear"></div>
 <div class="right contentWrapper grid_6 alpha omega"></div>
 </div>
 <div class="clear"></div>
 </div>
-<div class="footer container_12">© 2010 <a href="http://jo32.info">jo32.info</a> | source code |
-contact : <a href="http://jo32.info">@jo32</a></div>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

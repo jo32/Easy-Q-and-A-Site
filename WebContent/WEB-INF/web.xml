@@ -42,13 +42,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ReplyaTopic</display-name>
-    <servlet-name>ReplyaTopic</servlet-name>
-    <servlet-class>info.jo32.EasyQandASite.model.ReplyaTopic</servlet-class>
+    <display-name>replyTopic</display-name>
+    <servlet-name>replyTopic</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.replyTopic</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ReplyaTopic</servlet-name>
-    <url-pattern>/ReplyaTopic</url-pattern>
+    <servlet-name>replyTopic</servlet-name>
+    <url-pattern>/replyTopic</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -80,7 +80,7 @@
     <servlet-name>signup</servlet-name>
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>Initializer</display-name>
     <servlet-name>Initializer</servlet-name>
@@ -89,5 +89,99 @@
   <servlet-mapping>
     <servlet-name>Initializer</servlet-name>
     <url-pattern>/Initializer</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>info.jo32.EasyQandASite.persistence.ConnectionDispatcher</listener-class>
+  </listener>
+  <context-param>
+    <param-name>xmlFile</param-name>
+    <param-value>WEB-INF/db.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>info.jo32.EasyQandASite.persistence.ProxoolListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>proxool</servlet-name>
+    <servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>proxool</servlet-name>
+    <url-pattern>/proxool</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <param-name>adminName</param-name>
+    <param-value>admin</param-value>
+  </context-param>
+  <context-param>
+    <param-name>adminEmail</param-name>
+    <param-value>jo32@jo32.info</param-value>
+  </context-param>
+  <context-param>
+    <param-name>adminPassword</param-name>
+    <param-value>test</param-value>
+  </context-param>
+  <context-param>
+    <param-name>initializingKey</param-name>
+    <param-value>thisKey</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>digg</display-name>
+    <servlet-name>digg</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.digg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>digg</servlet-name>
+    <url-pattern>/digg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>edit</display-name>
+    <servlet-name>edit</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.edit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edit</servlet-name>
+    <url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>delete</display-name>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.delete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>editPermission</display-name>
+    <servlet-name>editPermission</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.editPermission</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editPermission</servlet-name>
+    <url-pattern>/editPermission</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getEditableTopic</display-name>
+    <servlet-name>getEditableTopic</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.getEditableTopic</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getEditableTopic</servlet-name>
+    <url-pattern>/getEditableTopic</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewLog</display-name>
+    <servlet-name>viewLog</servlet-name>
+    <servlet-class>info.jo32.EasyQandASite.model.viewLog</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewLog</servlet-name>
+    <url-pattern>/viewLog.jsp</url-pattern>
   </servlet-mapping>
 </web-app>

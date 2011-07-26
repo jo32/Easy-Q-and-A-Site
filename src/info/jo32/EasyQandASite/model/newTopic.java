@@ -3,11 +3,13 @@ package info.jo32.EasyQandASite.model;
 import info.jo32.EasyQandASite.controller.Signal;
 import info.jo32.EasyQandASite.controller.Topic;
 import info.jo32.EasyQandASite.controller.User;
+import info.jo32.EasyQandASite.logging.Logger;
 import info.jo32.EasyQandASite.persistence.EntityFactory;
-import info.jo32.EasyQandASite.persistence.TopicWrapper;
+import info.jo32.EasyQandASite.persistence.wrapper.TopicWrapper;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,13 +58,16 @@ public class newTopic extends HttpServlet {
 		Gson gson = new Gson();
 		if (user != null && title != null && content != null) {
 			try {
-				EntityFactory ef = new EntityFactory();
+				Connection conn = (Connection) request.getSession().getAttribute("conn");
+				EntityFactory ef = new EntityFactory(conn);
 				Topic topic = new Topic();
 				topic.setUserId(user.getId());
 				topic.setTitle(title);
 				topic.setContent(content);
 				TopicWrapper tw = new TopicWrapper(topic);
 				ef.insert(tw);
+				Logger logger = new Logger(ef);
+				logger.log(user, "new topic");
 				String json = gson.toJson(new Signal(1, "A new topic is created!"));
 				pw.write(json);
 			} catch (Exception ex) {
@@ -74,5 +79,4 @@ public class newTopic extends HttpServlet {
 			pw.write(json);
 		}
 	}
-
 }

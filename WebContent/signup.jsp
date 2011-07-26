@@ -25,12 +25,7 @@
 <div class="topBar">
 <div class="container_12">
 <div class="grid_7">
-<div class="title">
-<ul>
-	<li class="name"><a href="">Exception.printTrace()</a></li>
-	<li class="description">: a very easy Q&A site</li>
-</ul>
-</div>
+<%@ include file="title.jsp"%>
 </div>
 <div class="options grid_5">
 <ul>
@@ -96,7 +91,6 @@
 </div>
 <div class="clear"></div>
 </div>
-<div class="footer container_12">copyright 2010 <a href="http://jo32.info">jo32.info</a> | source code |
-contact : <a href="http://jo32.info">@jo32</a></div>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

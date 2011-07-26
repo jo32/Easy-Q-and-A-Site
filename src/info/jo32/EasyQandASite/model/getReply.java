@@ -6,11 +6,12 @@ import info.jo32.EasyQandASite.controller.Signal;
 import info.jo32.EasyQandASite.controller.User;
 import info.jo32.EasyQandASite.controller.UserView;
 import info.jo32.EasyQandASite.persistence.EntityFactory;
-import info.jo32.EasyQandASite.persistence.ReplyWrapper;
-import info.jo32.EasyQandASite.persistence.UserWrapper;
+import info.jo32.EasyQandASite.persistence.wrapper.ReplyWrapper;
+import info.jo32.EasyQandASite.persistence.wrapper.UserWrapper;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,21 +54,25 @@ public class getReply extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String topicIdString = request.getParameter("topicId");
+		String userIdString = request.getParameter("userId");
 		HttpSession hs = request.getSession();
 		User user = (User) hs.getAttribute("user");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter pw = response.getWriter();
 		Gson gson = new Gson();
-		if (topicIdString != null && user != null) {
+		if (topicIdString != null && userIdString != null && user != null) {
 			try {
 				long topicId = Long.parseLong(topicIdString);
+				Connection conn = (Connection) request.getSession().getAttribute("conn");
+				EntityFactory ef = new EntityFactory(conn);
 				List<UserView> userList = new ArrayList<UserView>();
-				UserView author = new UserView();
-				author.setName(user.getName());
-				author.setEmail(user.getEmail());
-				author.setRole(user.getRight());
-				userList.add(author);
-				EntityFactory ef = new EntityFactory();
+				List<Entity> authorList = ef.select("userId = " + userIdString, new UserWrapper(user));
+				User author = (User) authorList.get(0);
+				UserView authorView = new UserView();
+				authorView.setName(author.getName());
+				authorView.setEmail(author.getEmail());
+				authorView.setRole(author.getRight());
+				userList.add(authorView);
 				List<Entity> replyList = ef.select("topicId =" + topicId + " Order by replytime desc", new ReplyWrapper(new Reply()));
 				for (int i = 0; i < replyList.size(); i++) {
 					Reply reply = (Reply) replyList.get(i);

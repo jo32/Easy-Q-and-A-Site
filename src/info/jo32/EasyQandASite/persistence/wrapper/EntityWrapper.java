@@ -1,4 +1,4 @@
-package info.jo32.EasyQandASite.persistence;
+package info.jo32.EasyQandASite.persistence.wrapper;
 
 import java.sql.ResultSet;
 import java.util.List;

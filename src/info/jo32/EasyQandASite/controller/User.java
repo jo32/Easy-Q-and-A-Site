@@ -1,7 +1,5 @@
 package info.jo32.EasyQandASite.controller;
 
-import info.jo32.EasyQandASite.util.MD5Util;
-
 @SuppressWarnings("serial")
 public class User extends Entity {
 

@@ -4,15 +4,23 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Topic extends Entity {
-	
-	
+
 	long id;
 	String title;
 	String content;
 	long userId;
+	int diggCount;
 	int replyCount;
 	int viewCount;
 	Date date;
+
+	public int getDiggCount() {
+		return diggCount;
+	}
+
+	public void setDiggCount(int diggCount) {
+		this.diggCount = diggCount;
+	}
 
 	public long getId() {
 		return id;

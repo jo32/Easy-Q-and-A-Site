@@ -1,5 +1,7 @@
-package info.jo32.EasyQandASite.persistence;
+package info.jo32.EasyQandASite.persistence.wrapper;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.List;
 
 import info.jo32.EasyQandASite.controller.Entity;
 import info.jo32.EasyQandASite.controller.User;
+import info.jo32.EasyQandASite.persistence.EntityFactory;
 
 public class UserWrapper extends EntityWrapper {
 
@@ -25,7 +28,8 @@ public class UserWrapper extends EntityWrapper {
 		Long userId;
 		String statement;
 		try {
-			ef = new EntityFactory();
+			Connection conn = DriverManager.getConnection("proxool.mysql");
+			ef = new EntityFactory(conn);
 			ResultSet rs = ef.executeQuery("select max(userId) from User");
 			rs.next();
 			userId = rs.getLong(1) + 1;
@@ -37,6 +41,7 @@ public class UserWrapper extends EntityWrapper {
 					+ email
 					+ "','"
 					+ password + "','" + right + "')";
+			conn.close();
 			return statement;
 		} catch (Exception e) {
 			return null;
